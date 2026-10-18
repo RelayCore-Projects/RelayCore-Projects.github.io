@@ -1,0 +1,33 @@
+---
+// One page per project, generated from the Markdown files in src/content/projects/.
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	return projects.map((project) => ({
+		params: { id: project.id },
+		props: { project },
+	}));
+}
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, status, repo, download, tech } = project.data;
+---
+
+<BaseLayout title={`${title} · RelayCore Projects`} description={summary}>
+	<p><a href="/">← All projects</a></p>
+	<h1>{title}</h1>
+	<p>{status}</p>
+	<p>{summary}</p>
+	<p><a href={repo}>Source code on GitHub</a> · <a href={download}>Download the APK</a></p>
+	<Content />
+	<h2>Tech</h2>
+	<p>{tech.join(', ')}</p>
+</BaseLayout>
