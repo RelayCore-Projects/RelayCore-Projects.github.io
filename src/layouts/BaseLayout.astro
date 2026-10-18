@@ -32,15 +32,13 @@ const path = Astro.url.pathname;
 		<meta name="generator" content={Astro.generator} />
 		<script is:inline>
 			// Set the theme before the page is drawn, so it does not flash.
+			// Light by default; dark only if the visitor chose it earlier.
 			(() => {
 				let theme;
 				try {
 					theme = localStorage.getItem('theme');
 				} catch {}
-				if (theme !== 'light' && theme !== 'dark') {
-					theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-				}
-				document.documentElement.dataset.theme = theme;
+				document.documentElement.dataset.theme = theme === 'dark' ? 'dark' : 'light';
 			})();
 		</script>
 	</head>
