@@ -1,6 +1,6 @@
-# The Rail
+# RelayCore Projects
 
-Portfolio site of the RelayCore-Projects GitHub organization, built with Astro.
+Source code of the RelayCore Projects portfolio site, built with Astro.
 
 Work in progress. Planned address: https://relaycore-projects.github.io
 
