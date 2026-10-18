@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-	title = 'RelayCore Projects · Richárd Tamás Simon',
-	description = 'Personal projects of Richárd Tamás Simon, software tester.',
+	title = 'RelayCore Projects · Simon Richárd Tamás',
+	description = 'Personal projects of Simon Richárd Tamás, software tester.',
 } = Astro.props;
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -51,14 +51,14 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 						}
 					</ul>
 				</details>
-				<a href="/about/">About</a>
+				<a href="/about/">About me</a>
 			</nav>
 		</header>
 		<main>
 			<slot />
 		</main>
 		<footer>
-			<p>© 2026 Richárd Tamás Simon · <a href="https://github.com/RelayCore-Projects">GitHub</a></p>
+			<p>© 2026 Simon Richárd Tamás · <a href="https://github.com/RelayCore-Projects">GitHub</a></p>
 		</footer>
 	</body>
 </html>
