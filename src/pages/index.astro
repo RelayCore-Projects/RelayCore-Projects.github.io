@@ -1,16 +1,21 @@
 ---
+// Home page. The shared frame (head, header, footer) comes from BaseLayout.
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<h1>RelayCore Projects</h1>
+
+	<section>
+		<h2>Richárd Tamás Simon</h2>
+		<p>
+			For almost five years I have worked as a software tester and IT support
+			specialist at a small software company, testing web applications and
+			SOAP/REST services and designing modules from client requirements that
+			went on to be built. Alongside that I am finishing an Electrical
+			Engineering BSc with a specialization in Energy Engineering, graduating in
+			February 2027. RelayCore Projects is the home of my personal projects, and
+			I am currently learning test automation with Playwright and TypeScript.
+		</p>
+	</section>
+</BaseLayout>
