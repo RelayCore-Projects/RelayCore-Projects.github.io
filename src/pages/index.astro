@@ -1,6 +1,10 @@
 ---
 // Home page. The shared frame (head, header, footer) comes from BaseLayout.
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout>
@@ -17,5 +21,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			February 2027. RelayCore Projects is the home of my personal projects, and
 			I am currently learning test automation with Playwright and TypeScript.
 		</p>
+	</section>
+
+	<section>
+		<h2>Projects</h2>
+		{
+			projects.map((project) => (
+				<ProjectCard
+					id={project.id}
+					title={project.data.title}
+					status={project.data.status}
+					summary={project.data.summary}
+				/>
+			))
+		}
 	</section>
 </BaseLayout>

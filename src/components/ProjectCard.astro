@@ -1,0 +1,17 @@
+---
+// One project on the home page: name, status, short summary and a link to its page.
+interface Props {
+	id: string;
+	title: string;
+	status: string;
+	summary: string;
+}
+
+const { id, title, status, summary } = Astro.props;
+---
+
+<article>
+	<h3><a href={`/projects/${id}/`}>{title}</a></h3>
+	<p>{status}</p>
+	<p>{summary}</p>
+</article>
