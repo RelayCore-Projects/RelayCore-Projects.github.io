@@ -1,39 +1,11 @@
 ---
-// Home page. The shared frame (head, header, footer) comes from BaseLayout.
-import { getCollection } from 'astro:content';
+// Home page: a short introduction. Projects and About are reached from the header.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout>
 	<h1>RelayCore Projects</h1>
-
-	<section>
-		<h2>Richárd Tamás Simon</h2>
-		<p>
-			For almost five years I have worked as a software tester and IT support
-			specialist at a small software company, testing web applications and
-			SOAP/REST services and designing modules from client requirements that
-			went on to be built. Alongside that I am finishing an Electrical
-			Engineering BSc with a specialization in Energy Engineering, graduating in
-			February 2027. RelayCore Projects is the home of my personal projects, and
-			I am currently learning test automation with Playwright and TypeScript.
-		</p>
-	</section>
-
-	<section>
-		<h2>Projects</h2>
-		{
-			projects.map((project) => (
-				<ProjectCard
-					id={project.id}
-					title={project.data.title}
-					status={project.data.status}
-					summary={project.data.summary}
-				/>
-			))
-		}
-	</section>
+	<p>
+		RelayCore Projects is the website of the <a href="https://github.com/RelayCore-Projects">RelayCore-Projects GitHub organization</a>, where I publish my personal projects.
+	</p>
 </BaseLayout>
