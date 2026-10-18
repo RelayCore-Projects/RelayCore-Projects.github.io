@@ -1,0 +1,55 @@
+---
+// Shared frame for every page: <head>, header and footer.
+// A page passes its own title and description; its content goes into <slot />.
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'RelayCore Projects · Richárd Tamás Simon',
+	description = 'Personal projects of Richárd Tamás Simon, software tester.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body>
+		<header>
+			<a href="/">
+				<img
+					src="/relaycore-lockup-transparent-navy.svg"
+					alt="RelayCore Projects"
+					width="149"
+					height="56"
+				/>
+			</a>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<p>© 2026 Richárd Tamás Simon · <a href="https://github.com/RelayCore-Projects">GitHub</a></p>
+		</footer>
+	</body>
+</html>
+
+<style>
+	body {
+		max-width: 48rem;
+		margin: 0 auto;
+		padding: 1rem;
+		font-family: system-ui, sans-serif;
+		line-height: 1.6;
+	}
+</style>
