@@ -60,6 +60,17 @@ h2 {
 	margin: 2.5rem 0 0.75rem;
 }
 
+h3 {
+	font-size: 1.125rem;
+	margin: 1.75rem 0 0.25rem;
+}
+
+/* The line right under a small heading (e.g. the dates of a job) stays close to it. */
+h3 + p {
+	margin-top: 0;
+	color: var(--muted);
+}
+
 a {
 	color: var(--link);
 	text-decoration-color: var(--copper);
