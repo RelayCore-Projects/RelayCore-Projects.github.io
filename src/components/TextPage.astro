@@ -18,7 +18,7 @@ const { Content } = await render(entry);
 const { title, pageTitle, description, lead } = entry.data;
 ---
 
-<BaseLayout title={pageTitle ?? `${title} · RelayCore Projects`} description={description}>
+<BaseLayout lang={lang} title={pageTitle ?? `${title} · RelayCore Projects`} description={description}>
 	<h1>{title}</h1>
 	<div class:list={['content', { 'has-lead': lead }]}>
 		<Content />

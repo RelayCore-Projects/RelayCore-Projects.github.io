@@ -4,29 +4,31 @@ import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
 	lang: Lang;
 }
 
-const { project } = Astro.props;
+const { project, lang } = Astro.props;
+const t = useTranslations(lang);
 const { Content } = await render(project);
 const { title, summary, status, repo, download, tech } = project.data;
 ---
 
-<BaseLayout title={`${title} · RelayCore Projects`} description={summary}>
+<BaseLayout lang={lang} title={`${title} · RelayCore Projects`} description={summary}>
 	<h1>{title}</h1>
 	<p class="status">{status}</p>
 	<p class="lead">{summary}</p>
 	<div class="actions">
-		<a class="button button-primary" href={download}>Download the APK</a>
-		<a class="button" href={repo}>Source code on GitHub</a>
+		<a class="button button-primary" href={download}>{t('project.download')}</a>
+		<a class="button" href={repo}>{t('project.source')}</a>
 	</div>
 	<div class="content">
 		<Content />
 	</div>
-	<h2>Tech</h2>
+	<h2>{t('project.tech')}</h2>
 	<ul class="tags">
 		{tech.map((item) => <li>{item}</li>)}
 	</ul>
