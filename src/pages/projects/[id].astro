@@ -1,80 +1,17 @@
 ---
-// One page per project, generated from the Markdown files in src/content/projects/.
-import type { CollectionEntry } from 'astro:content';
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// Project pages in English: /projects/<project>/
+import ProjectPage from '../../components/ProjectPage.astro';
+import { getProjects, projectSlug } from '../../lib/projects';
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects');
+	const projects = await getProjects('en');
 	return projects.map((project) => ({
-		params: { id: project.id },
+		params: { id: projectSlug(project) },
 		props: { project },
 	}));
 }
 
-interface Props {
-	project: CollectionEntry<'projects'>;
-}
-
 const { project } = Astro.props;
-const { Content } = await render(project);
-const { title, summary, status, repo, download, tech } = project.data;
 ---
 
-<BaseLayout title={`${title} · RelayCore Projects`} description={summary}>
-	<h1>{title}</h1>
-	<p class="status">{status}</p>
-	<p class="lead">{summary}</p>
-	<div class="actions">
-		<a class="button button-primary" href={download}>Download the APK</a>
-		<a class="button" href={repo}>Source code on GitHub</a>
-	</div>
-	<div class="content">
-		<Content />
-	</div>
-	<h2>Tech</h2>
-	<ul class="tags">
-		{tech.map((item) => <li>{item}</li>)}
-	</ul>
-</BaseLayout>
-
-<style>
-	.status {
-		display: inline-block;
-		margin: 0 0 1.25rem;
-		padding: 0.2rem 0.75rem;
-		border: 1px solid var(--copper);
-		border-radius: 999px;
-		font-size: 0.875rem;
-		font-weight: 600;
-	}
-
-	.actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin: 1.75rem 0 1rem;
-	}
-
-	/* The Markdown body is rendered outside this component, hence :global(). */
-	.content :global(li) {
-		margin-bottom: 0.4rem;
-	}
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.tags li {
-		padding: 0.2rem 0.7rem;
-		border-radius: 0.35rem;
-		background: var(--surface);
-		border: 1px solid var(--border);
-		font-size: 0.9rem;
-	}
-</style>
+<ProjectPage project={project} lang="en" />

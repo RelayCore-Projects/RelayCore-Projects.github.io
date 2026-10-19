@@ -90,7 +90,9 @@ code {
 	padding: 0 1.25rem;
 }
 
-.lead {
+/* An introduction: .lead on a paragraph, or the first paragraph of a page marked "lead: true". */
+.lead,
+.has-lead > p:first-child {
 	font-size: 1.25rem;
 	color: var(--muted);
 	max-width: 40rem;

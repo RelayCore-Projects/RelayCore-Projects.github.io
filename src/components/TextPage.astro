@@ -1,0 +1,26 @@
+---
+// Template for the text pages (home, about). The text comes from src/content/pages/<page>/<lang>.md.
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	page: string;
+	lang: Lang;
+}
+
+const { page, lang } = Astro.props;
+const entry = await getEntry('pages', `${page}/${lang}`);
+if (!entry) {
+	throw new Error(`Missing text: src/content/pages/${page}/${lang}.md`);
+}
+const { Content } = await render(entry);
+const { title, pageTitle, description, lead } = entry.data;
+---
+
+<BaseLayout title={pageTitle ?? `${title} · RelayCore Projects`} description={description}>
+	<h1>{title}</h1>
+	<div class:list={['content', { 'has-lead': lead }]}>
+		<Content />
+	</div>
+</BaseLayout>

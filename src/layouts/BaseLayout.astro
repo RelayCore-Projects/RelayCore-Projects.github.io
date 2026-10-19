@@ -1,7 +1,7 @@
 ---
 // Shared frame for every page: <head>, header and footer.
 // A page passes its own title and description; its content goes into <slot />.
-import { getCollection } from 'astro:content';
+import { getProjects, projectSlug } from '../lib/projects';
 import '@fontsource-variable/inter';
 import '../styles/global.css';
 
@@ -15,7 +15,7 @@ const {
 	description = 'Personal projects of Simon Richárd Tamás, software tester.',
 } = Astro.props;
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = await getProjects('en');
 const path = Astro.url.pathname;
 ---
 
@@ -62,7 +62,7 @@ const path = Astro.url.pathname;
 						<ul class="dropdown-menu">
 							{
 								projects.map((project) => {
-									const href = `/projects/${project.id}/`;
+									const href = `/projects/${projectSlug(project)}/`;
 									return (
 										<li>
 											<a href={href} aria-current={path === href ? 'page' : undefined}>

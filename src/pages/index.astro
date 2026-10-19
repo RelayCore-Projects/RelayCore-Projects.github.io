@@ -1,11 +1,6 @@
 ---
-// Home page: a short introduction. Projects and About are reached from the header.
-import BaseLayout from '../layouts/BaseLayout.astro';
+// Home page in English: /
+import TextPage from '../components/TextPage.astro';
 ---
 
-<BaseLayout>
-	<h1>RelayCore Projects</h1>
-	<p class="lead">
-		RelayCore Projects is the website of the <a href="https://github.com/RelayCore-Projects">RelayCore-Projects GitHub organization</a>, where I publish my personal projects.
-	</p>
-</BaseLayout>
+<TextPage page="home" lang="en" />
